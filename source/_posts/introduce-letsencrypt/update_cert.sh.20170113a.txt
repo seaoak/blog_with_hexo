@@ -1,0 +1,51 @@
+#!/bin/bash
+
+if [ -r $HOME/.bash_profile ]; then
+	source $HOME/.bash_profile
+elif [ -r $HOME/.bash_login ]; then
+	source $HOME/.bash_login
+elif [ -r $HOME/.profile ]; then
+	source $HOME/.profile
+elif [ -r $HOME/.bashrc ]; then
+	source $HOME/.bashrc
+fi
+
+set -e
+cd `dirname $0`
+
+{
+echo '======================================================================'
+
+set -x
+
+export PIDFILE=../pid-file
+
+date
+pwd
+test -r $PIDFILE
+ps -q `cat $PIDFILE`
+pyenv versions
+pyenv virtualenvs
+which python
+pyenv which python
+python -V
+simp_le --version
+
+set +e
+
+simp_le -v --email 'foobar@example.com' -f account_key.json -f cert.pem -f chain.pem -f fullchain.pem -f key.pem -d example.com:../doc-root-1 -d www.example.com:../doc-root-2 -d blog.example.com:../doc-root-3
+
+RET=$?
+
+set -e
+
+test $RET -eq 0 && kill -HUP `cat $PIDFILE`
+test $RET -eq 1 && RET=0
+
+set +x
+
+exit $RET
+} 2>&1 |
+rotatelogs -l `basename $0 .sh`.log.\%Y\%m\%d 2419200
+
+exit ${PIPESTATUS[0]}

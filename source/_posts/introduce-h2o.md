@@ -48,8 +48,8 @@ $ git clone https://github.com/h2o/h2o.git
 $ cd h2o
 $ git tag
 $ git checkout v2.0.4
-$ nice -20 cmake -DWITH_BUNDLED_SSL=on -DWITH_MRUBY=on .
-$ nice -20 make
+$ nice -19 cmake -DWITH_BUNDLED_SSL=on -DWITH_MRUBY=on .
+$ nice -19 make
 $ sudo make install
 ```
 
@@ -88,9 +88,9 @@ $ make clean
 $ git fetch
 $ git tag
 $ git checkout v2.0.6
-$ nice -20 cmake -DWITH_BUNDLED_SSL=on -DWITH_MRUBY=on .
-$ nice -20 make clean
-$ nice -20 make
+$ nice -19 cmake -DWITH_BUNDLED_SSL=on -DWITH_MRUBY=on .
+$ nice -19 make clean
+$ nice -19 make
 $ sudo make install
 ```
 

@@ -1,7 +1,6 @@
 ---
 title: Perl めも
 date: 2017-01-23 00:19:47
-updated: 2017-01-23 00:19:47
 tags:
 ---
 
@@ -31,6 +30,13 @@ $ perlbrew self-upgrade
 ```
 
 
+## CPAN モジュールのローカルインストール
+
+```bash
+$ cpanm -L lib URL::Encode
+```
+
+
 ## おやくそく
 
 ```perl
@@ -40,7 +46,7 @@ use strict;
 use warnings;
 use utf8;
 
-use lib './lib';
+use lib './lib/lib/perl5';
 
 use Carp qw/confess/;
 
@@ -102,4 +108,24 @@ sub encode {
     use Encode qw//;
     return Encode::encode("UTF-8", shift, Encode::FB_CROAK | Encode::LEAVE_SRC);
 }
+```
+
+
+## 半角カナを全角カナに変換
+
+```perl
+    sub hankaku2zenkaku {
+        use Lingua::JA::Regular::Unicode;
+        return katakana_h2z(shift);
+    }
+```
+
+
+### encodeURIComponent
+
+```perl
+    sub encode_uri_component {
+        use URL::Encode qw//;
+        return URL::Encode::url_encode_utf8(shift);
+    }
 ```

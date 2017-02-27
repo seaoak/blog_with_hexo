@@ -1,7 +1,6 @@
 ---
 title: 自己紹介
 date: 2016-11-06 23:03:35
-updated: 2017-01-14
 ---
 
 Seaoak （しーおーく）
@@ -11,7 +10,7 @@ https://seaoak.jp
 - Twitter: <a href="https://twitter.com/seaoak2003">@seaoak2003</a>
 - GitHub: <a href="https://github.com/seaoak">seaoak</a>
 - E-mail: <span class="fancybox"><img src="/hogehoge.png" alt="" width="174" height="21" style="display:inline;vertical-align:middle" /></span> ← ふつうのメールはこちらに
-- E-mail: <a href="https://protonmail.com" class="fancybox"><img src="/hogehoge_p.png" alt="" width="228" height="20" style="display:inline;vertical-align:middle;border:1px solid silver" /></a> ← センシティブなメールは <a href="https://protonmail.com">ProtonMail</a> でも
+- E-mail: <img src="/hogehoge_p.png" alt="" width="228" height="20" style="display:inline;vertical-align:middle;border:1px solid silver" /> ← センシティブなメールは <a href="https://protonmail.com">ProtonMail</a> でも
 
 旧ブログ（2005～2014年）は [＠nifty](http://www.nifty.com) の[ココログ](http://www.cocolog-nifty.com)： http://seaoak.cocolog-nifty.com/read/
 

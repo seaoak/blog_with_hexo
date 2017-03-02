@@ -58,4 +58,17 @@ Unless the style `.line { height: 22.400000000000002px; }` is specified,
 the line 3 (empty line) will look like it is removed.
 
 ------------------------------------------------------------------------------
+## Is this a markdown parse error?
+
+https://github.com/hexojs/hexo/issues/687
+
+```json
+{
+    "name": "pajjket",
+    "time": "2014-6-18 19:10:41",
+    "done": true
+}
+```
+
+------------------------------------------------------------------------------
 以上。

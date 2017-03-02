@@ -12,6 +12,35 @@ tags:
 
 https://github.com/hexojs/hexo-util/pull/22
 
+`hexo-util` の repository を git clone しただけではダメで、
+`npm run build:highlight` を実行して `highlight_alias.json` を生成する必要がある。
+
+
+------------------------------------------------------------------------------
+## About `highlight.js`
+
+ - https://highlightjs.org
+ - https://www.npmjs.com/package/highlight.js
+ - http://highlightjs.readthedocs.io/en/latest/
+ - http://highlightjs.readthedocs.io/en/latest/building-testing.html
+ - http://highlightjs.readthedocs.io/en/latest/api.html
+ - http://highlightjs.readthedocs.io/en/latest/line-numbers.html
+ - https://github.com/isagalaev/highlight.js
+ - https://github.com/isagalaev/highlight.js/issues/1425
+
+`highlight.js` の git repository を clone しただけでは node_modules として
+使えないので注意。
+`node tools/build.js -t node` を実行して生成された `build` ディレクトリを
+`node_modules/highlight.js` とみなせばよい。
+
+```bash
+$ git clone ssh://git@github.com:22/isagalaev/highlight.js.git
+$ cd highlight.js
+$ node tools/build.js -t node
+$ cd ../blog/node_modules
+$ ln -s ../../highlight.js/build highlight.js
+```
+
 ------------------------------------------------------------------------------
 ## multi-line comment
 

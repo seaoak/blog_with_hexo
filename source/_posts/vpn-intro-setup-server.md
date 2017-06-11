@@ -120,7 +120,7 @@ $ cd ../../bin
 
 ここでひとつ、おまじないが必要です。
 
-SoftEther VPN Server はデフォルトで TCP 443番ポート（https プロトコル用のポート）で接続を待ち受けます（bind します）。また、iPhone からの接続に L2TP/IPsec を使う場合、UDP 500番ポートと UDP 4500番ポートも bind します。Linux（というか UNIX 全般）では1024番未満のポートを bind するためには「特権」(capabilities) が必要です。iptables で1024番以上のポートにリダイレクトする、という抜け道もありますが、SoftEther VPN Server で L2TP/IPsec の待ち受けポート番号を変える方法がわからないので、今回は使えません。Docker を使えればポートマッピングでなんとかなったかもしれませんが。
+SoftEther VPN Server はデフォルトで TCP 443番ポート（https プロトコル用のポート）で接続を待ち受けます（bind します）。また、iPhone からの接続に L2TP/IPsec を使う場合、UDP 500番ポートと UDP 4500番ポートも bind します。Linux（というか UNIX 全般）では1024番未満のポートを bind するためには「特権」(capabilities) が必要です。iptables で1024番以上のポートにリダイレクトする、という抜け道もありますが、SoftEther VPN Server で L2TP/IPsec の待ち受けポート番号を変える方法がわからないので、今回は使えません（参考記事：「{% post_link how-to-listen-privileged-ports %}」）。Docker を使えればポートマッピングでなんとかなったかもしれませんが。
 
 今回は、Linux の "File Capabilities" 機能を利用して、実行ファイル vpnserver に CAP_NET_BIND_SERVICE 権限を付与します。これにより、root 権限がなくても、この実行ファイルを実行したときに限り、1024番未満のポートを bind できるようになります。ついでに、念のため、ディレクトリ丸ごと Owner を別のユーザに変更して、実行ファイルを書き換えられないようにしておきます。
 

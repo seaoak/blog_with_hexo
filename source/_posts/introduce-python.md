@@ -42,7 +42,7 @@ $ pyenv install -l
 $ pyenv install 2.7.13
 $ pyenv rehash
 $ pyenv versions
-$ pyenv shell 2.7.13
+$ pyenv global 2.7.13
 $ pyenv versions
 $ python -V
 $ pyenv exec pip install --upgrade pip

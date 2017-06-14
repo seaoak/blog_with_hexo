@@ -57,7 +57,7 @@ http://security.stackexchange.com/questions/112313/what-is-the-current-security-
 まずは Diffie-Hellman key を生成（数分間かかりました）：
 
 ```
-$ nice -20 openssl dhparam -out dhparam.pem 2048
+$ nice -19 openssl dhparam -out dhparam.pem 2048
 ```
 
 `h2o.conf` の `ssl:` エントリに `dh-file: dhparam.pem` の行を追加：

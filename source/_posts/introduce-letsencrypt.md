@@ -162,7 +162,7 @@ $ cd simp_le
 $ pyenv virtualenv --no-site-packages 2.7.13 venv-simp_le
 $ pyenv virtualenvs
 $ pyenv versions
-$ pyenv local venv-simp_l
+$ pyenv local venv-simp_le
 $ pyenv virtualenvs
 $ pyenv versions
 $ pyenv exec pip list

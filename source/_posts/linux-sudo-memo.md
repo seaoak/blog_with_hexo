@@ -48,7 +48,7 @@ Defaults>FOO_RUNNERS    !env_reset
 Defaults>FOO_RUNNERS    !secure_path
 Defaults>FOO_RUNNERS    !authenticate
 
-foo ALL = (%foo-runner) FOO_COMMANDS
+foo ALL = (FOO_RUNNERS) FOO_COMMANDS
 ```
 
 `Defaults` ディレクティブを使ってシステムデフォルトの設定を限定的に上書きしているのがポイントです。あと、`/bin/kill` の実行を許可しておかないと、起動したプロセスを制御できなくなってしまうので、ご注意ください。test コマンドについても許可しておくのがオススメです（後述）。
@@ -94,7 +94,11 @@ get_existent_pid() {
         echo "ERROR: BUG: invaild PID_FILE : $PID_FILE" 1>&2
         return 99
     }
-    test -r $PID_FILE || return 0
+    test -e $PID_FILE || return 0
+    test -r $PID_FILE || {
+        echo "ERROR: can not read $PID_FILE (permission error)" 1>&2
+        return 99
+    }
     local STATUS
     STATUS=
     local PID

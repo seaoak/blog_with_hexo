@@ -5,8 +5,8 @@ updated: 2017-01-24 00:00:00
 tags:
 ---
 
- - https://nodejs.org/ja/
- - https://github.com/creationix/nvm
+- https://nodejs.org/ja/
+- https://github.com/creationix/nvm
 
 
 ## 導入

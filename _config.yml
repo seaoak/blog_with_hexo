@@ -26,7 +26,21 @@ category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
+ - _posts/**/*.txt
+ - _posts/**/*.html
+ - _posts/**/*.htm
+ - _posts/**/*.css
  - _posts/**/*.js
+ - _posts/**/*.png
+ - _posts/**/*.jpg
+ - _posts/**/*.jpeg
+ - _posts/**/*.gif
+ - _posts/**/*.bmp
+ - _posts/**/*.xcf
+ - _posts/**/*.mp4
+ - _posts/**/*.zip
+ - _posts/**/*.gz
+ - _posts/**/*.xlsx
 # - _posts/book-uminosoko.md
 ignored_path:
  - /**/.git

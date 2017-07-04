@@ -4,8 +4,8 @@
 
 # Site
 title: Seaoak's READ
-subtitle: とあるハードウェアエンジニアの趣味プログラミング日記
-description: Seaoak の雑記帳です。コンピュータ全般（プログラミング、Web デザイン、サーバ構築、回路設計、コンピュータサイエンスなど）と読書（小説・IT系技術書）の話がメインです。
+subtitle: a sense of distance between Verilog and Lisp
+description: Seaoak の雑記帳です。プログラミング、Linux サーバ、Web デザイン、LSI 設計、高速インターコネクト、などなど。
 author: Seaoak
 language: ja
 timezone: Asia/Tokyo

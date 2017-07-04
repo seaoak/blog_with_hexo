@@ -93,9 +93,9 @@ error-log の例：
 [lib/core/proxy.c] in request:/favicon.ico:connection failed
 ```
 
-なお、Hexo server は、デフォルトでは `0.0.0.0` を Listen します（参考：[`heso-server/index.js:10`](https://github.com/hexojs/hexo-server/blob/master/index.js#L10)）。つまり、サーバ上のすべてのインターフェースで IPv4 接続を受け付けます。**IPv6 接続は受け付けません**。Hexo server のヘルプ（下記）には "Bind to all IP address by default" と書かれていますが、実際には IPv4 限定です。Hexo server 起動時に明示的にコマンドラインオプションで `-i ::1` と指定すれば、IPv6 でのローカルループバック接続のみ受け付けるようになります（つまり、Hexo server 自体は IPv6 に対応しています）。もちろん、同様に `-i 127.0.0.1` と指定すれば、IPv4 でのローカルループバック接続のみ受け付けるようになります。そして、同様に `-i ::` と指定すると、**IPv4 と IPv6 のどちらでも受け付けるようになります**（netstat コマンドで確認すると IPv6 しか Listen していないように見えるのですが、curl コマンドなどで試すと IPv4 でも IPv6 でも接続できました）。試した環境は Ubuntu 16.04.2 LTS (x86_64) と Hexo 3.3.7 の組み合わせです。
+なお、Hexo server は、デフォルトでは `0.0.0.0` を Listen します（参考：[`heso-server/index.js:10`](https://github.com/hexojs/hexo-server/blob/master/index.js#L10)）。つまり、サーバ上のすべてのインターフェースで IPv4 接続を受け付けます。**IPv6 接続は受け付けません**。Hexo server のヘルプ（下記）には "Bind to all IP address by default" と書かれていますが、実際には IPv4 限定です。Hexo server 起動時に明示的にコマンドラインオプションで `-i ::1` と指定すれば、IPv6 でのローカルループバック接続のみ受け付けるようになります（つまり、Hexo server 自体は IPv6 に対応しています）。もちろん、同様に `-i 127.0.0.1` と指定すれば、IPv4 でのローカルループバック接続のみ受け付けるようになります。そして、同様に `-i ::` と指定すると、**なぜか IPv4 と IPv6 のどちらでも受け付けるようになりました**（netstat コマンドで確認すると IPv6 しか Listen していないように見えるのですが、curl コマンドなどで試すと IPv4 でも IPv6 でも接続できました）。試した環境は Ubuntu 16.04.2 LTS (x86_64) と Hexo 3.3.7 の組み合わせです。
 
-<i>デフォルトで IPv6 接続も受け付けるように誰かパッチ作ってくれないかなぁ・・・・</i>
+<i>デフォルトで IPv6 接続も受け付けるようにするパッチを作る・・・・作りたい。そのうち。</i>
 
 参考）Hexo server のヘルプ：
 

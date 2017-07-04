@@ -84,7 +84,7 @@ host:
         proxy.reverse.url: "http://127.0.0.1:9999/"
 ```
 
-H2O で reverse proxy するときには、接続先のホスト名として `localhost` ではなく `127.0.0.1` を使います。理由は、**Hexo server が IPv6 に対応していない**からです。OS (Linux) の設定にも依存するのかもしれませんが、H2O で接続先を `http://localhost:9999/` とかにすると、コネクションごとに IPv4 で接続したり IPv6 で接続したりするようで、接続エラーになったりならなかったりします。H2O の error-log を見ると、一部のリクエストが "connection failed" となっていることが確認できます。ちなみに、H2O で接続先を `http://[::1]:9999/` とかにして IPv6 接続を強制すると、100% 接続エラーになります。
+注意点として、H2O で reverse proxy する接続先のホスト名としては、`localhost` ではなく `127.0.0.1` を指定してください。理由は、Hexo server が**デフォルトでは IPv4 接続しか受け付けない**からです。OS (Linux) の設定にも依存するのかもしれませんが、H2O で接続先を `http://localhost:9999/` のようにすると、コネクションごとに IPv4 で接続したり IPv6 で接続したりするようで、接続エラーになったりならなかったりします。H2O の error-log を見ると、一部のリクエストが "connection failed" となっていることが確認できます。ちなみに、H2O で接続先を `http://[::1]:9999/` とかにして IPv6 接続を強制すると、100% 接続エラーになります。
 
 error-log の例：
 
@@ -92,6 +92,76 @@ error-log の例：
 [lib/core/proxy.c] in request:/:connection failed
 [lib/core/proxy.c] in request:/favicon.ico:connection failed
 ```
+
+なお、Hexo server は、デフォルトでは `0.0.0.0` を Listen するようです。つまり、サーバ上のすべてのインターフェースで IPv4 接続を受け付けます。**IPv6 接続は受け付けません**。Hexo server のヘルプ（下記）には "Bind to all IP address by default" と書かれていますが、実際には IPv4 限定です。Hexo server 起動時に明示的にコマンドラインオプションで `-i ::1` と指定すれば、IPv6 でのローカルループバック接続のみ受け付けるようになります（つまり、Hexo server 自体は IPv6 に対応しています）。もちろん、同様に `-i 127.0.0.1` と指定すれば、IPv4 でのローカルループバック接続のみ受け付けるようになります。そして、同様に `-i ::` と指定すると、**IPv4 と IPv6 のどちらでも受け付けるようになります**（netstat コマンドで確認すると IPv6 しか Listen していないように見えるのですが、curl コマンドなどで試すと IPv4 でも IPv6 でも接続できました）。試した環境は Ubuntu 16.04.2 LTS (x86_64) と Hexo 3.3.7 の組み合わせです。
+
+<i>デフォルトで IPv6 接続も受け付けるように誰かパッチ作ってくれないかなぁ・・・・</i>
+
+参考）Hexo server のヘルプ：
+
+```
+$ hexo server --help
+Usage: hexo server
+
+Description:
+Start the server and watch for file changes.
+
+Options:
+  -i, --ip            Override the default server IP. Bind to all IP address by default.
+  -l, --log [format]  Enable logger. Override log format.
+  -o, --open          Immediately open the server url in your default web browser.
+  -p, --port          Override the default port.
+  -s, --static        Only serve static files.
+
+```
+
+参考）デフォルト：
+
+```
+$ hexo server -p 9999 >log.txt 2>&1 &
+$ netstat -antu | grep ':9999'
+tcp        0      0 0.0.0.0:9999            0.0.0.0:*               LISTEN
+$
+```
+
+参考）IPv4 も IPv6 も接続可能なケース：
+
+```
+$ hexo server -i :: -p 9999 >log.txt 2>&1 &
+$ netstat -antu | grep ':9999'
+tcp6       0      0 :::9999                 :::*                    LISTEN
+$
+```
+
+参考）試した環境：
+
+```
+$ hexo -V
+hexo: 3.3.7
+hexo-cli: 1.0.3
+os: Linux 4.4.0-64-generic linux x64
+http_parser: 2.7.0
+node: 8.1.2
+v8: 5.8.283.41
+uv: 1.12.0
+zlib: 1.2.11
+ares: 1.10.1-DEV
+modules: 57
+openssl: 1.0.2l
+icu: 59.1
+unicode: 9.0
+cldr: 31.0.1
+tz: 2017b
+$
+$ cat /etc/lsb-release
+DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=16.04
+DISTRIB_CODENAME=xenial
+DISTRIB_DESCRIPTION="Ubuntu 16.04.2 LTS"
+$
+```
+
+あと、H2O が reverse proxy 接続する際に IPv4 接続と IPv6 接続を混在させてしまう理由は未調査です。H2O で `getaddrinfo(3)` あたりを呼んでいるコードを追えばわかりそうな気もしますが、未着手です。ちなみに、`/etc/hosts` には `127.0.0.1 localhost` と `::1 localhost` の両方が書いてあります。
 
 
 ## Hexo server の設定

@@ -3,6 +3,7 @@ title: Hexo server をよりセキュアに
 date: 2017-07-02 17:29:33
 tags:
  - Hexo
+ - H2O
 ---
 
 Hexo server への直接アクセスを禁止して、Web サーバ H2O を「SSL/TLS あり Basic 認証ありの reverse proxy」として動かして、その H2O 経由で Hexo server にアクセスするようにします。

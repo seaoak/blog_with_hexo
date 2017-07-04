@@ -41,6 +41,8 @@ skip_render:
  - _posts/**/*.zip
  - _posts/**/*.gz
  - _posts/**/*.xlsx
+ - _posts/**/.[a-zA-Z0-9]*
+ - _posts/**/~*
 # - _posts/book-uminosoko.md
 ignored_path:
  - /**/.git

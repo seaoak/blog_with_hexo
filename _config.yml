@@ -5,16 +5,17 @@
 # Site
 title: Seaoak's READ
 subtitle: a sense of distance between Verilog and Lisp
-description: Seaoak の雑記帳です。プログラミング、Linux サーバ、Web デザイン、LSI 設計、高速インターコネクト、などなど。
+description: Seaoak の雑記帳です。プログラミング、Linux サーバ、Web デザイン、などなど。
+keywords:
 author: Seaoak
-language: ja
+language: en
 timezone: Asia/Tokyo
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: https://blog.seaoak.jp
 root: /
-permalink: :year/:month/:day/:title/
+permalink: :title/
 permalink_defaults:
 
 # Directory
@@ -43,7 +44,6 @@ skip_render:
  - _posts/**/*.xlsx
  - _posts/**/.[a-zA-Z0-9]*
  - _posts/**/~*
-# - _posts/book-uminosoko.md
 ignored_path:
  - /**/.git
  - /**/node_modules
@@ -79,7 +79,16 @@ highlight:
 fancybox: false
 marked:
   breaks: false
-
+  
+# Home page setting
+# path: Root path for your blogs index page. (default = '')
+# per_page: Posts displayed per page. (0 = disable pagination)
+# order_by: Posts order. (Order by date descending by default)
+index_generator:
+  path: ''
+  per_page: 10
+  order_by: -date
+  
 # Category & Tag
 default_category: uncategorized
 category_map:
@@ -89,7 +98,7 @@ tag_map:
 ## Hexo uses Moment.js to parse and display date
 ## You can customize the date format as defined in
 ## http://momentjs.com/docs/#/displaying/format/
-date_format: YYYY-MM-DD
+date_format: YYYY-MMM-DD
 time_format: HH:mm:ss
 
 # Archives

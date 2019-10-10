@@ -6,3 +6,14 @@ node_modules/
 themes/
 public/
 .deploy*/
+
+x
+xx
+xxx
+y
+yy
+yyy
+z
+zz
+zzz
+*.20[0-9][0-9][01][0-9][0123][0-9][a-z]

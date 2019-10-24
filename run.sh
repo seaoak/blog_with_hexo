@@ -9,6 +9,7 @@ set -e
 #hexo-util						../../hexo-util
 #END
 #
+#grep -E '^[a-z]' |
 #(
 #	set -e
 #	set -x
@@ -38,4 +39,8 @@ $PREFIX node --version
 $PREFIX npm --version
 $PREFIX hexo -V
 $PREFIX hexo clean --debug
+if [ "X$1" = 'Xgenerate' ]; then
+    $PREFIX hexo generate --debug
+    exit $?
+fi
 $PREFIX hexo server -i 127.0.0.1 -p 5958 --debug

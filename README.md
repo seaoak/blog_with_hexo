@@ -4,6 +4,17 @@ Deploy to https://blog.seaoak.jp
 
 With [Hexo](https://hexo.io) and [Node.js](https://nodejs.org)
 
+## How to build
+
+```bash
+$ hexo init site20200518a
+$ cd site20200518a
+$ npm install --save hexo-filter-fix-cjk-spacing hexo-generator-feed hexo-generator-json-content hexo-generator-sitemap
+$ npm install --save hexo-renderer-jade
+$ git clone -b read ssh://seaoak/seaoak/hexo-theme-BlueLake themes/BlueLake
+$ hexo generate
+```
+
 
 ## License
 

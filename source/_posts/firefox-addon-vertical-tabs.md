@@ -1,7 +1,7 @@
 ---
 title: Firefox の Vertical Tabs アドオンの代替
 date: 2016-11-21 19:10:25
-updated: 2016-11-21
+updated: 2016-11-21 19:10:25
 tags:
 ---
 

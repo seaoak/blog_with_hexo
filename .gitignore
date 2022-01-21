@@ -6,6 +6,7 @@ node_modules/
 themes/
 public/
 .deploy*/
+*.code-workspace
 
 x
 xx

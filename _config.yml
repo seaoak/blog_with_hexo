@@ -12,9 +12,8 @@ language: en
 timezone: 'Asia/Tokyo'
 
 # URL
-## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
+## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: https://blog.seaoak.jp
-root: /
 permalink: :title/
 permalink_defaults:
 pretty_urls:
@@ -69,6 +68,11 @@ highlight:
   wrap: true
   hljs: false
 fancybox: false
+prismjs:
+  enable: false
+  preprocess: true
+  line_number: true
+  tab_replace: ''
 marked:
   breaks: false
 
@@ -96,8 +100,8 @@ meta_generator: true
 ## http://momentjs.com/docs/#/displaying/format/
 date_format: YYYY-MMM-DD
 time_format: HH:mm:ss
-## Use post's date for updated date unless set in front-matter
-use_date_for_updated: true
+## updated_option supports 'mtime', 'date', 'empty'
+updated_option: 'date'
 
 # Archives
 ## https://github.com/hexojs/hexo-generator-archive
@@ -129,6 +133,6 @@ ignore:
 theme: BlueLake
 
 # Deployment
-## Docs: https://hexo.io/docs/deployment.html
+## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: ''

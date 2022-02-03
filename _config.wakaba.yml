@@ -1,0 +1,16 @@
+# Theme configuration file
+
+# Intro widgit
+intro:
+  photo: logo_bluedisc1_400x400.png ## "path/to/file" or URL
+  description: |
+    「しーおーく」と読みます。プログラミングが大好きです。おしごとは IT 系のハードウェア開発エンジニア（FPGA の設計とか）。
+    書ける言語は C / JavaScript / Perl / Verilog-HDL / SystemVerilog あたり。
+  email_img: hogehoge-g-20170201a.png ## "path/to/file" or URL
+  links:
+    - title: Homepage
+      url: https://seaoak.jp
+    - title: Twitter @seaoak2003
+      url: https://twitter.com/seaoak2003
+    - title: GitHub @seaoak
+      url: https://github.com/seaoak

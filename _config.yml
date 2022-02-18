@@ -61,7 +61,7 @@ post_asset_folder: true
 relative_link: false
 future: true
 highlight:
-  enable: true
+  enable: false
   line_number: true
   auto_detect: false
   tab_replace: '    '
@@ -69,7 +69,7 @@ highlight:
   hljs: true
 fancybox: false
 prismjs:
-  enable: false
+  enable: true
   preprocess: true
   line_number: true
   tab_replace: '    '

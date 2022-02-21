@@ -6,7 +6,10 @@ intro:
   description: |
     「しーおーく」と読みます。プログラミングが大好きです。おしごとは IT 系のハードウェア開発エンジニア（FPGA の設計とか）。
     書ける言語は C / JavaScript / Perl / Verilog-HDL / SystemVerilog あたり。
-  email_img: hogehoge-g-20170201a.png ## "path/to/file" or URL
+  email_img_files:
+    - path: hogehoge-g-20220211c.png
+    - path: hogehoge-p-20220211c.png
+    - path: hogehoge-s-20220221a.png
   links:
     - title: Homepage
       url: https://seaoak.jp
@@ -14,3 +17,19 @@ intro:
       url: https://twitter.com/seaoak2003
     - title: GitHub @seaoak
       url: https://github.com/seaoak
+
+# Links widget
+links:
+  - title: Hexo
+    url: https://hexo.io
+  - title: Wakaba - Hexo Theme
+    url: https://github.com/seaoak/hexo-theme-wakaba
+  - title: Caveat - Google Fonts
+    url: https://fonts.google.com/specimen/Caveat
+
+# Notice widget
+notice:
+  body_html: |
+    <p>記載されている会社名・製品名・システム名などは、各社の商標、または登録商標です。</p>
+    <p>本サイトのコンテンツのライセンスは <a href="https://creativecommons.org/licenses/by/4.0/legalcode">CC BY 4.0</a> とします。
+    <strong>すべてのコンテンツは「無保証」です。</strong></p>

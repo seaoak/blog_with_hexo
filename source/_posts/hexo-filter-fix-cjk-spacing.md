@@ -52,7 +52,7 @@ https://github.com/lotabout/hexo-filter-fix-cjk-spacing
 
 導入は簡単で、単に NPM パッケージをインストールするだけです。
 
-```bash
+```bash-prompt
 $ npm install hexo-filter-fix-cjk-spacing --save
 ```
 

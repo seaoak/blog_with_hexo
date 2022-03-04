@@ -32,13 +32,13 @@ simp_le 最新版を使うためには、Python を 2.7 系から 3.6 系にア�
 
 古い pyenv 設定を消しておく
 
-```bash
+```bash-prompt
 $ rm ~/run/simp_le/.python-version
 ```
 
 python3 系の最新版 (3.6.1) を入れる：
 
-```bash
+```bash-prompt
 $ pyenv install -l
 $ pyenv install 3.6.1
 $ pyenv rehash
@@ -49,7 +49,7 @@ $ python -V
 
 GitHub から simp_le の最新版を取得：
 
-```bash
+```bash-prompt
 $ cd ~/run/simp_le
 $ git pull
 $ git tag
@@ -58,25 +58,25 @@ $ git checkout 0.18.0
 
 venv.sh 相当のことを手動でやる：
 
-```bash
-	$ pyenv virtualenv venv-simp_le
-	$ pyenv virtualenvs
-	$ pyenv versions
-	$ pyenv local venv-simp_le
-	$ pyenv virtualenvs
-	$ pyenv versions
+```bash-prompt
+$ pyenv virtualenv venv-simp_le
+$ pyenv virtualenvs
+$ pyenv versions
+$ pyenv local venv-simp_le
+$ pyenv virtualenvs
+$ pyenv versions
 
-	$ pyenv exec pip list
-	$ pyenv exec pip install -U setuptools
-	$ pyenv exec pip install -U pip
-	$ pyenv exec pip install -U wheel
-	$ pyenv exec pip install -e .
-	$ pyenv exec pip list
+$ pyenv exec pip list
+$ pyenv exec pip install -U setuptools
+$ pyenv exec pip install -U pip
+$ pyenv exec pip install -U wheel
+$ pyenv exec pip install -e .
+$ pyenv exec pip list
 ```
 
 証明書ファイルのあるディレクトリで、お試し実行：
 
-```bash
+```bash-prompt
 $ MAIL='foo@example.jp'
 $ FQDN='bar.example.jp'
 $ DOCROOT='/var/www/bar.example.jp/letsencrypt'
@@ -85,7 +85,7 @@ $ simp_le -v --email "$MAIL" -f account_reg.json -f account_key.json -f cert.pem
 
 あとしまつ（自作の自動更新スクリプトがエラーになるのでお掃除）：
 
-```bash
+```bash-prompt
 $ rmdir /var/www/bar.example.com/letsencrypt/.well-known/acme-challenge
 ```
 

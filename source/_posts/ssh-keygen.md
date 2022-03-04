@@ -29,7 +29,7 @@ https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-s
 
 とりあえず鍵はひととおり作っておく：
 
-```bash
+```bash-prompt
 $ ssh-keygen -o -a 100 -t rsa -b 4096 -C 'hoge@example.com'
 $ ssh-keygen -o -a 100 -t ecdsa -b 521 -C 'hoge@example.com'
 $ ssh-keygen -o -a 100 -t ed25519 -C 'hoge@example.com'
@@ -57,13 +57,13 @@ $ chmod 400 ~/.ssh/memo.txt
 基本的には SSH クライアントは自動選択してくれるらしいですが、
 もしダメなときは ed25519 を指定できるみたいです：
 
-```bash
+```bash-prompt
 $ echo 'IdentityFile ~/.ssh/id_ed25519' >> ~/.ssh/config
 ```
 
 もし本当に「ed25519 以外は使わない」としたい場合：
 
-```bash
+```bash-prompt
 $ echo 'IdentitiesOnly yes' >> ~/.ssh/config
 ```
 
@@ -74,7 +74,7 @@ $ echo 'IdentitiesOnly yes' >> ~/.ssh/config
 
 ## 今の SSH 鍵の確認
 
-```bash
+```bash-prompt
 $ \ls ~/.ssh/id_*.pub | xargs -n 1 ssh-keygen -l -f
 ```
 
@@ -85,7 +85,7 @@ $ \ls ~/.ssh/id_*.pub | xargs -n 1 ssh-keygen -l -f
 
 https://help.github.com/articles/testing-your-ssh-connection/
 
-```
+```bash-prompt
 $ ssh -T -p 22 -i ~/.ssh/id_ed25519 git@github.com
 Enter passphrase for key '/home/hoge/.ssh/id_ed25519':
 Hi seaoak! You've successfully authenticated, but GitHub does not provide shell access.

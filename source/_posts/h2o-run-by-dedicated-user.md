@@ -54,7 +54,7 @@ Web サーバ H2O を「よりセキュアに」運用したいと思って、�
 
 具体的な作業は以下のようになります：
 
-```
+```bash-prompt
 $ sudo adduser --disabled-password h2o-builder
 $ sudo adduser --disabled-password h2o-manager
 $ sudo adduser --home /noexistent --shell /bin/false --no-create-home --disabled-password --disabled-login h2o-runner
@@ -70,13 +70,13 @@ $ sudo adduser --shell /bin/false --disabled-password www01
 
 よりセキュアな運用をしたいなら、ユーザ h2o-runner をグループ www01 に追加して、コンテンツディレクトリのパーミッションを 750 に制限します：
 
-```
+```bash-prompt
 $ sudo adduser h2o-runner www01
 $ sudo -u www01 chmod -R o-rwx ~www01/htdocs
 ```
 逆に、特定のユーザだけにコンテンツの変更を許可したい場合、それらのユーザをグループ www01 に追加して、コンテンツディレクトリのパーミッションを 775 にします：
 
-```
+```bash-prompt
 $ sudo adduser user77 www01
 $ sudo adduser user88 www01
 $ sudo -u www01 chmod -R g+w ~www01/htdocs
@@ -91,7 +91,7 @@ $ sudo -u www01 chmod -R g+w ~www01/htdocs
 
 ただ単に、GitHub のリポジトリを clone/pull して、ビルドして、格納するだけです。
 
-```
+```bash-prompt
 $ sudo -u h2o-builder -i
 $ cd /home/h2o-builder
 $ mkdir deploy
@@ -112,7 +112,7 @@ $ time nice -19 ionice -c 3 make install
 
 あと、デフォルトで「安定版」を使えるように、`stable` という名前でシンボリックリンクを作っておくのもオススメです。このシンボリックリンクの張り替えは手動で良いと思います（一週間くらい様子を見てからとか）。
 
-```
+```bash-prompt
 $ cd ~h2o-builder/deploy
 $ rm -f stable
 $ ln -s 20170614a.tag-v2.2.2 stable
@@ -123,14 +123,14 @@ $ ln -s 20170614a.tag-v2.2.2 stable
 
 まず、管理専用ユーザ h2o-manager をグループ h2o-runner に追加しておきます：
 
-```
+```bash-prompt
 $ sudo adduser h2o-manager h2o-runner
 ```
 
 
 H2O 実行用のディレクトリを作って、グループ h2o-runner だけが読み出せるようにします：
 
-```
+```bash-prompt
 $ sudo -u h2o-manager -i
 $ cd ~h2o-manager
 $ mkdir run
@@ -141,7 +141,7 @@ $ chmod 750 .
 
 また、ログファイルと pid ファイルを置くディレクトリを作って、グループ h2o-runner に書き込み権限を与えます：
 
-```
+```bash-prompt
 $ mkdir logs
 $ chgrp h2o-runner logs
 $ chmod 770 logs
@@ -172,7 +172,7 @@ hosts:
 
 念のため、最後にもう一度 chgrp と chmod を実行しておきます：
 
-```
+```bash-prompt
 $ chgrp -R h2o-runner ~h2o-manager/run
 $ chmod -R o-rwx ~h2o-manager/run
 ```
@@ -182,7 +182,7 @@ $ chmod -R o-rwx ~h2o-manager/run
 
 H2O 管理専用ユーザ h2o-manager が、H2O 実行専用ユーザ（グループ h2o-runner に所属しているユーザ）に sudo できるように設定します：
 
-```
+```bash-prompt
 $ sudo visudo --strict -f /etc/sudoers.d/h2o
 ```
 
@@ -331,7 +331,7 @@ esac
 
 H2O 管理専用ユーザ h2o-manager として、上記の起動スクリプトを実行するだけです：
 
-```
+```bash-prompt
 $ sudo -u h2o-manager ~h2o-manager/run/run.sh start
 ```
 
@@ -342,7 +342,7 @@ $ sudo -u h2o-manager ~h2o-manager/run/run.sh start
 
 実行すると `kill -TERM` します。
 
-```
+```bash-prompt
 $ sudo -u h2o-manager ~h2o-manager/run/run.sh stop
 ```
 
@@ -351,7 +351,7 @@ $ sudo -u h2o-manager ~h2o-manager/run/run.sh stop
 
 H2O が listen するポートを変えたいときは、reload ではダメなので restart します。
 
-```
+```bash-prompt
 $ sudo -u h2o-manager ~h2o-manager/run/run.sh restart
 ```
 
@@ -360,6 +360,6 @@ $ sudo -u h2o-manager ~h2o-manager/run/run.sh restart
 
 H2O 設定ファイルを更新したときには reload します。実行すると `kill -HUP` します。
 
-```
+```bash-prompt
 $ sudo -u h2o-manager ~h2o-manager/run/run.sh reload
 ```

@@ -17,7 +17,7 @@ https://docs.ruby-lang.org/ja/2.4.0/method/Regexp/i/match.html
 第2引数として `pos` が渡せるのですが、`pos` に `0` 以外の値を渡した場合、
 「文字列先頭にマッチする正規表現」（つまり `^` と `\A`）は**絶対にマッチしません**。
 
-```bash
+```bash-prompt
 $ ruby -e 'p "abc".match(/^./, 1)'
 nil
 $

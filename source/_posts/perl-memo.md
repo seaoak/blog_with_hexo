@@ -11,7 +11,7 @@ tags:
 
 ## 導入
 
-```bash
+```bash-prompt
 $ \curl -L https://install.perlbrew.pl | bash
 $ echo 'source ~/perl5/perlbrew/etc/bashrc' >> ~/.bashrc
 $ bash
@@ -26,14 +26,14 @@ $ perlbrew install-cpanm
 
 アップデート
 
-```bash
+```bash-prompt
 $ perlbrew self-upgrade
 ```
 
 
 ## CPAN モジュールのローカルインストール
 
-```bash
+```bash-prompt
 $ cpanm -L lib URL::Encode
 ```
 

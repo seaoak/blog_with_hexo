@@ -52,7 +52,7 @@ ImageMagick のバージョンは `7.1.0-26 Q16-HDRI x64 2022-02-21` （の Port
   https://imagemagick.org/script/download.php#windows   
   (`ImageMagick-7.1.0-portable-Q16-HDRI-x64.zip`)
 
-```bash
+```bash-prompt
 $ convert -version
 Version: ImageMagick 7.1.0-26 Q16-HDRI x64 2022-02-21 https://imagemagick.org
 Copyright: (C) 1999-2021 ImageMagick Studio LLC
@@ -67,7 +67,7 @@ $
 メトリクス `AE` を指定して、ピクセル単位で一致しない箇所を数えてもらいます。
 出力が `0` なら、完全一致（＝ロスレス）ということになります。
 
-```bash
+```bash-prompt
 $ compare -metric AE aaa.bmp aaa.png NULL:
 0
 $
@@ -98,13 +98,13 @@ WebP は、Google が開発した画像フォーマットで、動画圧縮コ�
 
 まずは、なにもオプションを指定せずに ImageMagick で変換してみる：
 
-```bash
+```bash-prompt
 $ convert aaa.bmp aaa.webp
 ```
 
 ロスレスかどうか、チェックをしてみる：
 
-```bash
+```bash-prompt
 $ compare -metric AE aaa.bmp aaa.webp NULL:
 8.20354e+06
 $
@@ -114,7 +114,7 @@ $
 
 今度は明示的にロスレス圧縮の指定してみる：
 
-```bash
+```bash-prompt
 $ time convert aaa.bmp -define webp:lossless=true ccc.webp
 
 real    0m7.564s
@@ -134,7 +134,7 @@ $
 
 なお、WebP に変換する際に `-quality 99` とか指定してみても、ファイルサイズの差はわずかでした：
 
-```bash
+```bash-prompt
 $ time convert aaa.bmp -quality 99 -define webp:lossless=true ddd.webp
 
 real    0m8.778s
@@ -157,7 +157,7 @@ AVIF (AV1 Image File Format) は、動画圧縮コーデック VP1 の技術を�
 
 まずは ImageMagick を使って変換してみます。
 
-```bash
+```bash-prompt
 $ time convert aaa.bmp -quality 100 ccc.avif
 
 real    0m24.906s
@@ -181,7 +181,7 @@ ImageMagick をあきらめて、libavif の `avifenc.exe` を試してみるこ
 
 最新の v0.9.0 をダウンロードして使いました。
 
-```bash
+```bash-prompt
 $ ~/Downloads/libavif/v0.9.0/avifenc.exe --version
 Version: 0.9.0 (dav1d [dec]:0.8.2-0-gf06148e, aom [enc/dec]:2.0.2)
 libyuv : unavailable
@@ -191,7 +191,7 @@ $
 
 `avifenc.exe --help` で確認すると .bmp ファイルは直接食べられないみたいなので、.png ファイルを入力ファイルとして指定します。
 
-```bash
+```bash-prompt
 $ time avifenc.exe --lossless aaa.png ccc.avif
 Successfully loaded: aaa.png
 AVIF to be written: (Lossless)
@@ -230,7 +230,7 @@ $
 
 ためしに一番遅い `--speed 0` を指定してみる。
 
-```bash
+```bash-prompt
 $ time avifenc.exe --lossless --speed 0 aaa.png ccc.avif
 Successfully loaded: aaa.png
 AVIF to be written: (Lossless)
@@ -279,7 +279,7 @@ JPEG 後継の JPEG XL は、その名に反して（？）、ロスレス圧縮
 とりあえず ImageMagick でロスレス圧縮を指定する方法がわからなかったので、libjxl の `cjxl.exe` を使うことにしました。
 最新の v0.6.1 の `jxl-x64-windows-static.zip` をダウンロードして使います。
 
-```bash
+```bash-prompt
 $ time cjxl.exe aaa.png ddd.jxl -q 100 -v
 JPEG XL encoder v0.6.1 a205468 [AVX2,SSE4,Scalar]
 Read 3840x2160 image, 31.1 MP/s
@@ -313,7 +313,7 @@ $
 
 さらに effort を max 指定にしてみます：
 
-```bash
+```bash-prompt
 $ time cjxl.exe aaa.png eee.jxl -q 100 -v -e 9
 JPEG XL encoder v0.6.1 a205468 [AVX2,SSE4,Scalar]
 Read 3840x2160 image, 31.4 MP/s
@@ -348,7 +348,7 @@ ImageMagick でも `-quality 100` 指定でロスレス圧縮になる、との�
 (thanks [@yoya](https://twitter.com/yoya))   
 https://twitter.com/yoya/status/1496499554107404288
 
-```bash
+```bash-prompt
 $ time convert aaa.bmp -quality 100 fff.jxl
 
 real    12m45.754s
@@ -384,7 +384,7 @@ ImageMagick は BPG 形式をサポートしていないみたいです。
 
 `bpgenc.exe -h` で確認すると .jpg か .png しか食べられないみたいなので、.png ファイルを指定します。
 
-```bash
+```bash-prompt
 $ time ~/Downloads/bpg/bpg-0.9.8-win64/bpgenc.exe -o ddd.bpg -c rgb -lossless aaa.png
 
 real    0m2.624s
@@ -406,7 +406,7 @@ $
 
 ためしに、compression level を slowest にしてみる：
 
-```bash
+```bash-prompt
 $ time ~/Downloads/bpg/bpg-0.9.8-win64/bpgenc.exe -o eee.bpg -c rgb -lossless -m 9 aaa.png
 
 real    0m2.722s

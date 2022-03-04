@@ -75,7 +75,7 @@ readme.txt
 
 編集後に diff をとると以下のようになります：
 
-```bash
+```bash-prompt
 $ diff vpn33_openvpn_remote_access_l3.ovpn vpn33_hub01.ovpn
 41c41
 < proto udp
@@ -145,7 +145,7 @@ iPhone で作業します。
 
 L2TP/IPsec 接続のときと同様、vpnserver のログファイルが更新されているはずです。
 
-```bash
+```bash-prompt
 $ less server_log/vpn_20170510.log
 ```
 

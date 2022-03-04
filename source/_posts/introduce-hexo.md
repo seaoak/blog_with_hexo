@@ -30,7 +30,7 @@ SSG に関しては以下のリンクを参照してください：
 
 続いて、Hexo のコマンドをインストールします：
 
-```bash
+```bash-prompt
 $ npm install hexo-cli -g
 ```
 
@@ -40,7 +40,7 @@ NVM で新しいバージョンの Node.js をインストールした場合に�
 
 ## 新しいブログの作成
 
-```bash
+```bash-prompt
 $ hexo init new_my_blog
 $ cd new_my_blog
 $ hexo server -p 5210
@@ -59,13 +59,13 @@ Hexo server は Ctrl-C で止められます。
 
 Hexo の設定ファイルは `_config.yml` という YAML ファイルです。
 
-```bash
+```bash-prompt
 $ vi _config.yml
 ```
 
 
 ## デプロイ前の確認
 
-```bash
-(nice -10 hexo clean --debug && nice -10 hexo server -p 5210 --debug) 2>&1 | tee z
+```bash-prompt
+$ (nice -10 hexo clean --debug && nice -10 hexo server -p 5210 --debug) 2>&1 | tee z
 ```

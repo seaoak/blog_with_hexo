@@ -27,7 +27,7 @@ FQDN: vpn33.example.com
 
 まず、ファイアウォールに穴をあけます。UDP 500番ポートと、UDP 4500番ポートで、待ち受けできるようにします。
 
-```bash
+```bash-prompt
 $ sudo iptables -A INPUT -i vnet1 -d '192.0.2.33' -p udp --dport 500 -j ACCEPT
 $ sudo iptables -A INPUT -i vnet1 -d '192.0.2.33' -p udp --dport 4500 -j ACCEPT
 $ sudo iptables -L -vn
@@ -45,7 +45,7 @@ Windows PC 上の「SoftEther VPN サーバー管理マネージャ」でサー�
 
 もちろん、vpncmd コマンドを使えばコマンドライン上でも設定できます：
 
-```
+```bash-prompt
 $ ./vpncmd localhost:443 /SERVER
 VPN Server>IPsecEnable /L2TP:yes /L2TPRAW:no /ETHERIP:no /PSK:Ppz6o5x9J /DEFAULTHUB:hub01
 ```
@@ -96,7 +96,7 @@ iOS 標準機能で L2TP/IPsec 接続が可能です。アプリのインスト�
 
 vpnserver を実行したディレクトリにログファイル用のディレクトリが自動的に作られているはずです。デフォルトでは、自動的に定期的に新しいログファイルに切り替わっていきます。ログファイルは単なる UTF-8 のテキストファイルです。SoftEther VPN Server の言語設定が「日本語」だと、ログも日本語になります。
 
-```bash
+```bash-prompt
 $ less server_log/vpn_20170510.log
 ```
 

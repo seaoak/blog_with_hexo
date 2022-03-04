@@ -63,7 +63,7 @@ https://ja.softether.org/5-download
 
 表示されたリンクの URL をコピペしてダウンロードします：
 
-```bash
+```bash-prompt
 $ cd softether
 $ curl -O http://jp.softether-download.com/files/softether/v4.20-9608-rtm-2016.04.17-tree/Linux/SoftEther_VPN_Server/64bit_-_Intel_x64_or_AMD64/softether-vpnserver-v4.20-9608-rtm-2016.04.17-linux-x64-64bit.tar.gz
 $ mkdir softether-vpnserver-v4.20-9608-rtm-2016.04.17-linux-x64-64bit
@@ -105,14 +105,14 @@ FQDN: vpn33.example.com
 
 今回は SoftEther VPN Server をユーザモードで動かすので、公式マニュアルの「7.3.6 VPN Server の配置」以降の作業はやりません（make を実行するだけです）。
 
-```bash
+```bash-prompt
 $ cd vpnserver
 $ nice -19 make
 ```
 
 無事に make できたら、実行に必要なファイルだけ手動でコピーします。
 
-```bash
+```bash-prompt
 $ mkdir ../../bin
 $ cp -p hamcore.se2 vpncmd vpnserver ../../bin
 $ cd ../../bin
@@ -129,7 +129,7 @@ SoftEther VPN Server はデフォルトで TCP 443番ポート（https プロト
 - Man page of CAPABILITIES   
   https://linuxjm.osdn.jp/html/LDP_man-pages/man7/capabilities.7.html
 
-```bash
+```bash-prompt
 $ sudo chmod -R a-w .
 $ sudo chown -R nobody .
 $ sudo chgrp -R nogroup .
@@ -138,13 +138,13 @@ $ sudo setcap CAP_NET_BIND_SERVICE+eip vpnserver
 
 もし、setcap コマンドが無いと怒られたら、`libcap2-bin` パッケージをインストールしてください。CentOS などの RPM 系では `libcap` パッケージらしいです。（[参考ページ](http://www.usupi.org/sysad/183.html)）
 
-```bash
+```bash-prompt
 $ sudo apt-get install libcap2-bin
 ```
 
 最後に、vpnserver を実行するディレクトリ（この配下にログファイルなどが作られる）に移動して、上記ファイルへのシンボリックリンクを作成します。
 
-```bash
+```bash-prompt
 $ mkdir ../run
 $ cd ../run
 $ rm -f hamcore.se2 vpncmd vpnserver
@@ -171,13 +171,13 @@ $ ln -s ../bin/vpnserver
 
 次に、vpnserver を起動します。起動するとすぐにコマンドプロンプトに戻ってきます。
 
-```bash
+```bash-prompt
 $ date && nice -10 ./vpnserver start
 ```
 
 続いて、vpncmd を実行して初期設定を開始します。
 
-```bash
+```bash-prompt
 $ ./vpncmd localhost:443 /SERVER
 ```
 
@@ -213,7 +213,7 @@ VPN Server>exit
 
 vpncmd が終了したら、vpnserver も停止させます。
 
-```bash
+```bash-prompt
 $ ./vpnserver stop
 ```
 
@@ -225,7 +225,7 @@ $ ./vpnserver stop
 
 TCP 443番ポートのみ待ち受け可能にします。
 
-```bash
+```bash-prompt
 $ sudo iptables -A INPUT -i vnet1 -d '192.0.2.33' -p tcp --dport 443 -j ACCEPT
 $ sudo iptables -L -vn
 $ sudo ip6tables -A INPUT -i vnet1 -d '2001:db8::2:33 ' -p tcp --dport 443 -j ACCEPT
@@ -235,13 +235,13 @@ $ sudo /etc/init.d/iptables-persistent save
 
 もし、`iptables-persistent` が無いと怒られたら、`iptables-persistent` パッケージをインストールしてください。
 
-```bash
+```bash-prompt
 $ sudo apt-get install iptables-persistent
 ```
 
 vpnserver を起動して、ちゃんと TCP 443番ポートを listen しているか netstat コマンドで確認しておきます。
 
-```bash
+```bash-prompt
 $ date && nice -10 ./vpnserver start
 $ netstat -antu
 ```
@@ -259,7 +259,7 @@ iPhone からネットアクセスする際に使う仮想 HUB を新規作成�
 
 実際の作業は vpncmd で行います。もちろん、Windows PC の「SoftEther VPN サーバー管理マネージャ」でも同様の設定が可能です。
 
-```bash
+```bash-prompt
 $ ./vpncmd localhost:443 /SERVER
 ```
 

@@ -18,6 +18,22 @@ intro:
     - title: GitHub @seaoak
       url: https://github.com/seaoak
 
+# Sidebar
+sidebar:
+  widgets:
+    - intro
+    - search
+    - recent_posts
+    - archive
+    - tagcloud
+    - links
+    - notice
+  show_count:
+    archive: true
+    tagcloud: true
+    tag: true
+    category: true
+
 # Links widget
 links:
   - title: Hexo

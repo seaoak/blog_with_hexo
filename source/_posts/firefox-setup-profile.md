@@ -51,6 +51,10 @@ tags:
 タブバーを右サイドバーとして設定することで、縦置きにします。
 アドオンを入れて、アドオンのスタイルシートで見た目を調整して、さらに Firefox 自体のスタイルシートもカスタマイズします。
 
+こんなイメージになります：
+
+{% asset_img SS20220418a_Firefox_sample.jpg "カスタマイズ後の Firefox のイメージ" %}
+
 {% post_link firefox-addon-vertical-tabs "2016年に書いた記事" %}では Vertical Tabs Reloaded というアドオンをご紹介しましたが、
 今は別のアドオンを使わせていただいています。
 

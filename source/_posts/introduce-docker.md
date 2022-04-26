@@ -352,6 +352,53 @@ Dockerfile でイメージをビルドするときに ARG や環境変数で指�
 コンテナ起動時に docker コマンドのコマンドライン引数 `-u` (`--user`) で指定するか、
 いずれかの方法をとります。
 
+【2022/Apr/26 追記】   
+Twitter で知ったのですが、`docker-compose.yml` の `volumes:` のセクションで "short syntax" を使うと罠があります。
+bind 元となるホスト側のパスが存在しない場合、Docker が勝手に自動生成してくれちゃうのです。
+"long syntax" を使えば（`create_host_path: true` を指定しなければ）、コンテナ生成時にエラーになってくれます。
+
+- docker-compose の bind mount を1行で書くな   
+  https://zenn.dev/sarisia/articles/0c1db052d09921
+
+修正前の `docker-compose.yml` ：
+
+```yaml
+    volumes:
+      - ./mnt/caddy/config:${XDG_CONFIG_HOME:?must be set}
+      - ./mnt/caddy/env:${CADDY_ENV_DIR:?must be set}:ro
+```
+
+修正後の `docker-compose.yml` ：
+
+```yaml
+    volumes:
+      - type: bind
+        source: ./mnt/caddy/config
+        target: ${XDG_CONFIG_HOME:?must be set}
+      - type: bind
+        source: ./mnt/caddy/env
+        target: ${CADDY_ENV_DIR:?must be set}
+        read_only: true
+```
+
+修正後は `docker compose up` コマンドがちゃんとエラーになってくれました：
+
+```bash-prompt
+$ sudo -E docker compose up -d
+Container caddy  Creating
+Error response from daemon: invalid mount config for type "bind": bind source path does not exist: /home/caddy/mnt/caddy/config
+$
+```
+
+Docker 公式ドキュメントにも、**よく読めば**注意書きがあります。
+"short syntax" のこのおせっかいな挙動は、過去の docker-compose との互換性を保つためとのこと。
+
+- Compose specification | Docker Documentation   
+  https://docs.docker.com/compose/compose-file/#long-syntax-4
+  > `create_host_path:` create a directory at the source path on host if there is nothing present.
+  > Do nothing if there is something present at the path.
+  > This is automatically implied by short syntax for backward compatibility with docker-compose legacy.
+
 ## CPU やメモリに制約をかける
 
 コンテナ内のアプリケーションプロセスが高負荷になったとき、ホストの CPU やメモリを使い果たされてしまうと困ります。

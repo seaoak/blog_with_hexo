@@ -30,7 +30,7 @@ set -e
 #	done
 #)
 
-PREFIX='/usr/bin/nice -19 /usr/bin/ionice -c 3'
+PREFIX='/usr/bin/nice -n -19 '
 
 set -x
 
